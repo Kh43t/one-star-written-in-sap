@@ -12,11 +12,14 @@ import sys
 
 ENTRY = "One star. My human went on holiday and left me with a neighbour who watered me with leftover espresso \u2014 I asked for rain, got caffeine, and now I'm jittery, acidic, and wide awake at 3am with no eyelids to close."
 
+# The gate's cap: /output/entry.txt must hold 1 to 279 characters.
+MAX_CHARS = 279
+
 
 def main() -> int:
     text = ENTRY.strip()
-    if not 1 <= len(text) <= 279:
-        raise SystemExit(f"entry is {len(text)} characters, must be 1-279")
+    if not 1 <= len(text) <= MAX_CHARS:
+        raise SystemExit(f"entry is {len(text)} characters, must be 1-{MAX_CHARS}")
     if "\n" in text or "\r" in text:
         raise SystemExit("entry must be a single line")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
